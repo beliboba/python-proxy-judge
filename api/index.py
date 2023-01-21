@@ -10,11 +10,17 @@ jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 
 @app.route('/')
 async def index(request: Request):
-	print(request.headers)
-	headers = dict(request.headers)
+	headers = {}
+	for key, value in request.headers.items():
+		if isinstance(value, list):
+			value = ';'.join(value)
+		headers[key] = value
 	return json(headers, 200)
 
 
 @app.route('/favicon.ico')
 async def favicon(request: Request):
 	return await file("./static/favicon.ico")
+
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=8000, debug=True)
