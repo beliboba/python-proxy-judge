@@ -1,8 +1,10 @@
-from sanic import Sanic, json, Request, file
+from sanic import Sanic, json, Request, file, response
+from sanic.exceptions import NotFound
 from sanic_jinja2 import SanicJinja2
 
 app = Sanic("main")
 app.static("/static", "./static")
+app.error_handler.add(NotFound, lambda r, e: response.empty(status=404))
 jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 
 
