@@ -1,4 +1,4 @@
-from sanic import Sanic, json, Request
+from sanic import Sanic, json, Request, file
 from sanic_jinja2 import SanicJinja2
 
 app = Sanic("main")
@@ -15,3 +15,8 @@ async def index(request: Request):
 	headers.pop("sec-ch-ua-platform", None)
 	headers.pop("sec-fetch-user", None)
 	return json(headers, 200)
+
+
+@app.route('/favicon.ico')
+async def favicon(request: Request):
+	return file("./favicon.ico")
