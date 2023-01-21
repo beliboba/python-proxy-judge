@@ -2,7 +2,7 @@
 
 ## Python proxy judge running with sanic
 
-You can use this to test your proxies. https://judge.vercel.app/
+You can use this to test your proxies. https://pyjudge.vercel.app/
 
 ## Usage
 1. Python
@@ -10,7 +10,7 @@ You can use this to test your proxies. https://judge.vercel.app/
 import requests
 
 proxy = "YOUR PROXY"
-url = "https://judge.vercel.app/"
+url = "https://pyjudge.vercel.app/"
 
 with requests.Session() as s:
     s.proxies = {
