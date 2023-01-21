@@ -1,11 +1,9 @@
 from sanic import Sanic, json, Request, file, response
 from sanic.exceptions import NotFound
-from sanic_jinja2 import SanicJinja2
 
 app = Sanic("main")
-app.static("/static", "./static")
+app.static("static", "static")
 app.error_handler.add(NotFound, lambda r, e: response.empty(status=404))
-jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 
 
 @app.route('/')
@@ -23,7 +21,8 @@ async def index(request: Request):
 
 @app.route('/favicon.ico')
 async def favicon(request: Request):
-	return await file("./static/favicon.ico")
+	return await file('./static/favicon.ico')
+
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", port=8000, debug=True)
+	app.run(host="0.0.0.0", port=1337, debug=True)
