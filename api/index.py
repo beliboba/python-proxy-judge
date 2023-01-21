@@ -7,7 +7,6 @@ jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 
 
 @app.route('/')
-@jinja.template('index.html')
 async def index(request: Request):
 	print(request.headers)
 	headers = dict(request.headers)
