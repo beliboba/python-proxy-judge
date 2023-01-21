@@ -10,12 +10,15 @@ jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 
 @app.route('/')
 async def index(request: Request):
-	headers = {}
-	for key, value in request.headers.items():
-		if isinstance(value, list):
-			value = ';'.join(value)
-		headers[key] = value
-	return json(headers, 200)
+	try:
+		headers = {}
+		for key, value in request.headers.items():
+			if isinstance(value, list):
+				value = ';'.join(value)
+			headers[key] = value
+		return json(headers, 200)
+	except Exception as e:
+		return json({'error': str(e)}, 500)
 
 
 @app.route('/favicon.ico')
