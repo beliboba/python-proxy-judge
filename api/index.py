@@ -19,4 +19,4 @@ async def index(request: Request):
 
 @app.route('/favicon.ico')
 async def favicon(request: Request):
-	return file("./favicon.ico")
+	return await file("./static/favicon.ico")
