@@ -10,10 +10,6 @@ jinja = SanicJinja2(app, pkg_name="main", pkg_path="./templates")
 async def index(request: Request):
 	print(request.headers)
 	headers = dict(request.headers)
-	headers.pop("sec-ch-ua", None)
-	headers.pop("sec-ch-ua-mobile", None)
-	headers.pop("sec-ch-ua-platform", None)
-	headers.pop("sec-fetch-user", None)
 	return json(headers, 200)
 
 
